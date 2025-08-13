@@ -1,0 +1,662 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Fest</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+             background: linear-gradient(to bottom right, #FFFDD0, #FAF3E0);
+            color: #333;
+            </div>
+        }
+        
+        header {
+           background-image: url('https://uploads.onecompiler.io/43swjwsf8/43swjzeks/Screenshot%20(68).png'); /* Replace with your image URL */
+           background-size: cover; /* Cover the entire section */
+           background-position: center; /* Center the image */
+           width: 100%;
+           background-position: center;
+           height: 500px; /* Set a height for the section */
+           display:auto-fill;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+             flex-direction: column; /* Stack elements vertically */
+            justify-content: center; /* Center content vertically */
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tagline {
+            font-style: italic;
+            font-size: 1.2rem;
+        }
+        
+        .category-section {
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .category-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: black;
+            font-size: 1.8rem;
+            position: relative;
+            font-style: italic;
+        }
+        
+        .category-title:after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: #ff6b6b;
+            margin: 0.5rem auto;
+        }
+        
+        .cake-gallery {
+            display: grid;
+            grid-template-columns:repeat(auto-fill, minmax(308px,100px));
+            gap: 2rem;
+        }
+        
+        .cake-card {
+            background-color: cream;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .cake-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .cake-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .cake-info {
+            padding: 1.5rem;
+        }
+        
+        .cake-name {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: bold black;
+            font-style: deco;
+        }
+        
+        .cake-price {
+            font-weight: bold;
+            color: #ff6b6b;
+            font-size: 1.3rem;
+        }
+        
+        .cake-description {
+            margin-top: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-info {
+            margin-top: 1rem;
+        }
+
+        /* Modal Styles */
+            /* Modal Styles */
+        .modal {
+          display: none; 
+          position: fixed; 
+          z-index: 1; 
+          left: 0;
+          top: 0;
+          width: 100%; 
+          height: 100%; 
+          overflow: auto; 
+          background-color: rgba(0,0,0,0.6); /* Darker overlay for better visibility */
+          padding-top: 60px;
+         }
+
+        .modal-content {
+          background-color:white; /* Set background to white */
+          margin: 5% auto; 
+          padding: 20px;
+          border: 1px solid #888;
+          border-radius: 15px; /* More rounded corners */
+          width: 80%; /* Responsive width */
+          max-width: 500px; /* Max width to prevent stretching */
+          box-shadow: 0 4px 20px rgba(0,0,0,0.2); /* Shadow for depth */
+         }
+
+         #modalImage {
+         width: 100%; 
+         height: auto; 
+         border-radius: 1px; /* Rounded image */
+         }
+
+h3, p {
+    margin: 10px 0; /* Add spacing between elements */
+}
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Fest</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom right, #FFFDD0, #FAF3E0);
+            color: #333;
+        }
+        
+        header {
+            background-image: url('https://uploads.onecompiler.io/43swjwsf8/43swjzeks/Screenshot%20(68).png'); /* Replace with your image URL */
+            background-size: cover; /* Cover the entire section */
+            background-position: center; /* Center the image */
+            width: 100%;
+            height: 400px; /* Set a height for the section */
+            display: auto-fill;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            flex-direction: column; /* Stack elements vertically */
+            justify-content: center; /* Center content vertically */
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tagline {
+            font-style: italic;
+            font-size: 1.2rem;
+        }
+        
+        .category-section {
+            padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .category-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: black;
+            font-size: 1.8rem;
+            position: relative;
+            font-style: italic;
+        }
+        
+        .category-title:after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: #ff6b6b;
+            margin: 0.5rem auto;
+        }
+        
+        .cake-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+            gap: 2rem;
+        }
+        
+        .cake-card {
+            background-color: cream;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .cake-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .cake-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .cake-info {
+            padding: 1.5rem;
+        }
+        
+        .cake-name {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: bold black;
+            font-style: deco;
+        }
+        
+        .cake-price {
+            font-weight: bold;
+            color: #ff6b6b;
+            font-size: 1.3rem;
+        }
+        
+        .cake-description {
+            margin-top: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-info {
+            margin-top: 1rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.6); /* Darker overlay for better visibility */
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: white; /* Set background to white */
+            margin: 5% auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            border-radius: 15px; /* More rounded corners */
+            width: 80%; /* Responsive width */
+            max-width: 500px; /* Max width to prevent stretching */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2); /* Shadow for depth */
+        }
+
+        #modalImage {
+            width: 100%; 
+            height: auto; 
+            border-radius: 1px; /* Rounded image */
+        }
+
+        h3, p {
+            margin: 10px 0; /* Add spacing between elements */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                height: 200px; /* Adjust header height for mobile */
+            }
+            h1 {
+                font-size: 2rem; /* Adjust font size for mobile */
+            }
+            .category-title {
+                font-size: 1.5rem; /* Adjust category title size for mobile */
+            }
+            .cake-price {
+                font-size: 1.1rem; /* Adjust price size for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+       
+    </header>
+    
+    <section class="category-section" id="birthday">
+        <h2 class="category-title">Birthday Cakes</h2>
+        <div class="cake-gallery">
+             <div class="cake-card" onclick="openModal('Age Celebration', 'Vibrant layers with vanilla sponge and coated with some golden paper and red roses uplifted the look by age number and happy birthday topper', '&#8377 2000', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-09%20at%2023.29.51_e835be08.jpg?text=Age+Cake', '2 kg')">
+                <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-09%20at%2023.29.51_e835be08.jpg" alt="Vanilla birthday cake with edible glitter and roses" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Age Celebration</h3>
+                    2kg cake
+                    <p class="cake-price">&#8377 2000</p>
+                    <p class="cake-description">Vibrant layers with vanilla sponge and coated with some golden paper and red roses uplifted the look by age number and happy birthday topper</p>
+                </div>
+            </div>
+            <div class="cake-card" onclick="openModal('Pineapple cake', 'Pineapple crush coated with white icing and foundant', '&#8377 400', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-09%20at%2023.29.46_755523a5.jpg?text=Pineapple+cake', '1/2 kg')">
+                <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-09%20at%2023.29.46_755523a5.jpg" alt="Rich chocolate birthday cake with chocolate ganache drip and fresh berries" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Pineapple cake</h3>
+                    1/2 kg (500 gram)
+                    <p class="cake-price">&#8377 400</p>
+                    <p class="cake-description">Pineapple crush coated with white icing and foundant </p>
+                </div>
+            </div>
+             <div class="cake-card" onclick="openModal('Classic Unicorn', 'Two layer asthetic unicorn with edible sugar foundant and sprinklers', '&#8377 1000', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-09%20at%2023.29.51_cea889a6.jpg?text=Modern+Wedding+Cake', '1 kg')">
+                <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-09%20at%2023.29.51_cea889a6.jpg?text=Modern+Wedding+Cake" alt="Geometric modern wedding cake with silver and black accents" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Classic Unicorn</h3>
+                    1kg cake
+                    <p class="cake-price">&#8377 1000</p>
+                    <p class="cake-description">Two layer asthetic unicorn with edible sugar foundant and sprinklers</p>
+                </div>
+            </div>
+            <div class="cake-card" onclick="openModal('Asthetic Sports', 'Blueberry cake coated with white and green icing with edible cricket accessories on top','&#8377 900', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-09%20at%2023.29.47_a69d2c5e.jpg?text=Asthetic+Sports', '1 kg')">
+                <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-09%20at%2023.29.47_a69d2c5e.jpg?text=Elegant+Wedding+Cake" alt="Tall white wedding cake with delicate gold leaf accents and fresh flowers" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Asthetic Sports</h3>
+                    1 kg
+                    <p class="cake-price">&#8377 900</p>
+                    <p class="cake-description">Blueberry cake coated with white and green icing with edible cricket accessories on top</p>
+                </div>
+            </div>
+            <div class="cake-card" onclick="openModal('Classic Vanilla', 'A Vanilla sponge decorated with ocean blue embellishment , '&#8377 600', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-10%20at%2001.13.14_241cae83.jpg?text=Claasic+Vanilla', '1 kg')">
+                <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-10%20at%2001.13.14_241cae83.jpg?text=Naked+Wedding+Cake" alt="A Vanilla sponge decorated with ocean blue embellishment" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Classic Vanilla</h3>
+                    <p class="cake-price">&#8377 600</p>
+                    1kg cake
+                    <p class="cake-description">A Vanilla sponge decorated with ocean blue embellishment</p>
+                </div>
+            </div>
+            <div class="cake-card" onclick="openModal('Pearl Cake', 'Pearl cake with a artifical flower arrangd on the top and glittered with sparkles.', '&#8377 800','https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-09%20at%2023.29.49_76e5d51a.jpg?text=Modern+Wedding+Cake', '1 kg')">
+                <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-09%20at%2023.29.49_76e5d51a.jpg?text=Pearl+Cake" alt="Geometric modern Pearl cake with silver and golden with blue accents" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Pearl Cake</h3>
+                    1kg cake
+                    <p class="cake-price">&#8377 800</p>
+                    <p class="cake-description">Pearl cake with a artifical flower arrangd on the top and glittered with sparkles.</p>
+                </div>
+               </div>
+                 <div class="cake-card" onclick="openModal('Classic Elegance', 'Classic Chocolate cake with floral elegance and some chocolate balls', '&#8377 500', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-10%20at%2001.13.13_4fc08a51.jpg?text=Classic+Cake', '1/2 kg')">
+                <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-10%20at%2001.13.13_4fc08a51.jpg?text=Colorful+Birthday+Cake" alt="Chocolate cake loaded with icing flowers and Chocolate balls" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Classic Elegance</h3>
+                    1/2 kg
+                    <p class="cake-price">&#8377 500</p>
+                    <p class="cake-description">Classic Chocolate cake with floral elegance and some chocolate balls</p>
+                </div>
+            </div>
+               <div class="cake-card" onclick="openModal('Purple blooms', 'A touch of elegance, a swirl of purple blooms and love baked into every layer', '&#8377 500', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-10%20at%2001.39.49_f73eddab.jpg?text=Purple+blooms', '1 kg')">
+                <img src=https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-10%20at%2001.39.49_f73eddab.jpg?" alt="Rich in mango birthday cake decorated with purple blossoms" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Purple blooms</h3>
+                    1kg cake
+                    <p class="cake-price">&#8377 500</p>
+                    <p class="cake-description">A touch of elegance, a swirl of purple blooms, and love baked into every layer. Happy</p>
+                </div>
+            </div>
+               <div class="cake-card" onclick="openModal('Age Number Cake', 'Vibrant layers with vanilla sponge shaped with number and decorated with cream flowers and pearls', '$45 - $120', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-10%20at%2001.41.12_4e9b97fa.jpg?text=Age+Number+Cake', '1 kg')">
+                <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-10%20at%2001.41.12_4e9b97fa.jpg?text=Number+Cake" alt="Shaped number cake decorated with cream flowers and pearls" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Age Number Cake</h3>
+                    1 kg
+                    <p class="cake-price">&#8377 600</p>
+                    <p class="cake-description">Custom age-shaped cake with elegant decorations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="category-section" id="photo">
+        <h2 class="category-title">Photo Cakes</h2>
+        <div class="cake-gallery">
+       <div class="cake-card" onclick="openModal('Photo Charm', 'Photo cake finished it by applying basic pink shade and a cute happy birthday topper', '$180 - $500', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-09%20at%2023.29.51_720b28a6.jpg?text=Photo+Charm', '1 kg')">
+                <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-09%20at%2023.29.51_720b28a6.jpg?text=Naked+Wedding+Cake" alt="Photo cake finished it by applying basic pink shade and a cute happy birthday topper" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Photo Charm</h3>
+                    <p class="cake-price">&#8377 600</p>
+                    1kg cake
+                    <p class="cake-description">Photo cake finished it by applying basic pink shade and a cute happy birthday topper</p>
+                </div>
+            </div>
+            
+               <div class="cake-card" onclick="openModal('Golden Memories', 'A two-tier, white fondant cake beautifully decorated with edible gold accents and pearl details, featuring printed photos framed in gold leaf for a personalized touch. The top tier is adorned with elegant golden balls', '&#8377 2500', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-10%20at%2001.58.51_45c3fe1b.jpg?text=Birthday+Cake', '2 kg')">
+                <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-10%20at%2001.58.51_45c3fe1b.jpg?text=Birthday+Cake" alt="Photo cake with gold leaf and balls" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Golden Memories</h3>
+                    2kg cake
+                    <p class="cake-price">&#8377 2500</p>
+                    <p class="cake-description">A two-tier, white fondant cake beautifully decorated with edible gold accents and pearl details, featuring printed photos framed in gold leaf for a personalized touch. The top tier is adorned with elegant golden balls</p>
+                </div>
+            </div>
+               <div class="cake-card" onclick="openModal('Ronaldo Fan', 'A round football-themed birthday cake featuring an edible photo of Cristiano Ronaldo, bordered with vibrant green icing to resemble grass and The base is finished with a white fondant covering', '&#8377 1100', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-09%20at%2023.45.35_4587b9f7.jpg?text=Photo+Cake', '1 kg')">
+                 <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-09%20at%2023.45.35_4587b9f7.jpg?text=Modern+Cake" alt="Geometric modern Ronaldo cake with vibrant green icing to resemble grass" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Modern Cake</h3>
+                    1kg cake
+                    <p class="cake-price">&#8377 1100</p>
+                    <p class="cake-description">A round football-themed birthday cake featuring an edible photo of Cristiano Ronaldo, bordered with vibrant green icing to resemble grass and The base is finished with a white fondant covering</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="category-section" id="Pre-wed Cakes">
+        <h2 class="category-title">Pre-wed Cakes</h2>
+        <div class="cake-gallery">
+               <div class="cake-card" onclick="openModal('Bride to be', 'Luxurious golden cake layeres of red velvet and edible gold paper decorations and floral asthetics', '&#8377 900','https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-10%20at%2002.18.14_3eaf0401.jpg?text=Golden+Cake','1 kg')">
+                <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-10%20at%2002.18.14_3eaf0401.jpg?text=Elegant+Anniversary" alt="Golden layered cake with sophisticated floral arrangements" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Bride to be</h3>
+                    1kg cake
+                    <p class="cake-price">&#8377 900</p>
+                    <p class="cake-description">Luxurious golden cake with edible gold paper decorations and sophisticated floral arrangement.</p>
+                </div>
+            </div>
+               <div class="cake-card" onclick="openModal('Congrats Groom','A classy white ice cake with delicate gold leaf accents and topped with elegant edible pearls also with golden decorative leaves and a cute Groom to Be topper folded inside the cake made of fondant','&#8377 800', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-10%20at%2002.18.34_cf50eec2.jpg?text=Groom+Cake', '1/2 kg')">
+                <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-10%20at%2002.18.34_cf50eec2.jpg?text=Groom+Wedding" alt="Classy white ice cake " class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Congrats Groom</h3>
+                    1/2 kg
+                    <p class="cake-price">&#8377 800</p>
+                    <p class="cake-description">A classy white fondant cake with delicate gold leaf accents, topped with elegant edible pearls, golden decorative leaves, and a cute "Groom to Be" topper, perfect for a wedding or engagement celebration.</p>
+                </div>
+            </div>
+               <div class="cake-card" onclick="openModal('Floral Romance', 'A vibrant two-tone pink and white anniversary cake with elegant gold drip detailing, adorned with realistic red roses, green foliage, edible pearls, and gold leaf accents, beautifully crafted to celebrate a 25th wedding anniversary.', '&#8377 700', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-10%20at%2002.52.35_171a4f13.jpg?text=Colorful+Birthday+Cake', '1 kg')">               <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-10%20at%2002.52.35_171a4f13.jpg?text=Floral+Anniversary" alt="Delicate red and pink shaded cake with roses cascaded on it" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Floral Romance</h3>
+                    1kg Cake
+                    <p class="cake-price">&#8377 700</p>
+                    <p class="cake-description">A vibrant two-tone pink and white anniversary cake with elegant gold drip detailing, adorned with realistic red roses, green foliage, edible pearls, and gold leaf accents, beautifully crafted to celebrate a 25th wedding anniversary.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="category-section" id="Chocolate">
+         <h2 class="category-title">Chocolate-Truffle Cakes</h2>
+        <div class="cake-gallery">
+               <div class="cake-card" onclick="openModal('Chocolate Treat', 'A creamy chocolate cake decorated with KitKat bars, Oreo cookies, silver edible pearls, and a special “DAD” chocolate inscription', '&#8377 1500', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-11%20at%2023.34.57_cb211e50.jpg?text=Colorful+Birthday+Cake', '1.5 kg')">
+                <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-11%20at%2023.34.57_cb211e50.jpg?text=Chocolate+Treat" alt="Dense chocolate cake with simple chocolate glaze" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Chocolate Treat</h3>
+                    2kg cake
+                    <p class="cake-price">&#8377 1500</p>
+                    <p class="cake-description">Rich creamy chocolate cake decorated with KitKat bars, Oreo cookies, silver edible pearls, and a special “DAD” chocolate inscription.</p>
+                </div>
+            </div>
+               <div class="cake-card" onclick="openModal('Classy Truffle', 'A sleek black chocolate cake adorned with golden accents, edible pearls, and a seashell topper, paired with a floral light decoration.', '&#8377 1000', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-11%20at%2023.54.49_b37a1434.jpg?text=Truffle+Cake', '1 kg')">
+                <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-11%20at%2023.54.49_b37a1434.jpg?text=Truffle+Cake" alt="Simple vanilla sponge cake with light dusting of powdered sugar" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Classy Truffle</h3>
+                    1kg cake
+                    <p class="cake-price">&#8377 1000</p>
+                    <p class="cake-description">A sleek black chocolate cake adorned with golden accents, edible pearls, and a seashell topper, paired with a floral light decoration.</p>
+                </div>
+            </div>
+               <div class="cake-card" onclick="openModal('Coffee Walnuts', 'Moist coffee-flavored cake with crunchy almonds', '&#8377 1800', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-11%20at%2023.54.49_d580a9b4.jpg?text=Coffee+Cake', '1 kg')">
+                <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-11%20at%2023.54.49_d580a9b4.jpg?text=Coffee+Walnut" alt="Coffee walnut cake with walnut pieces visible in the layers" class="cake-image">
+                <div class="cake-info">
+                  <h3 class="cake-name">Coffee Walnuts</h3>
+                    1kg cake
+                    <p class="cake-price">&#8377 1800</p>
+                    <p class="cake-description">Moist coffee-flavored cake with crunchy almonds</p>
+                </div>
+                 </div>
+               <div class="cake-card" onclick="openModal('Chocolate Chips', 'A milk chocolate frosted cake with chocolate drip edges, topped with swirls of frosting and a center loaded with choco chips', '&#8377 1300', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-11%20at%2023.58.01_88aebbbf.jpg?text=Coffee+Cake', '1 kg')">
+                <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-11%20at%2023.58.01_88aebbbf.jpg?text=Coffee+Walnut" alt="Chocolate cake with choco chips" class="cake-image">
+                <div class="cake-info">
+                  <h3 class="cake-name">Chocolate Chips</h3>
+                    1kg cake
+                    <p class="cake-price">&#8377 1300</p>
+                    <p class="cake-description">A milk chocolate frosted cake with chocolate drip edges, topped with swirls of frosting and a center loaded with choco chips.</p>
+                </div>
+                
+                  </div>
+                 <div class="cake-card" onclick="openModal('Overloaded Chocolate', 'A smooth chocolate-glazed cake with simple swirl decorations, golden sprinkles, and a custom name tag for a classy look.', '&#8377 800', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-11%20at%2023.31.17_81a74474.jpg?text=Overloaded+Chocolate+Cake', '1/2 kg')">
+                <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-11%20at%2023.31.17_81a74474.jpg?text=Overloaded+Chocolate+Cake" alt="Overloaded Chocolate Cake" class="cake-image">
+                <div class="cake-info">
+                  <h3 class="cake-name">Overloaded Chocolate</h3>
+                    1/2kg cake
+                    <p class="cake-price">&#8377 800</p>
+                    <p class="cake-description">A smooth chocolate-glazed cake with simple swirl decorations, golden sprinkles, and a custom name tag for a classy look.</p>                 </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="category-section" id="special">
+        <h2 class="category-title">Special Cakes</h2>
+        <div class="cake-gallery">
+               <div class="cake-card" onclick="openModal('Pinata Cake', 'A spherical cake with a smooth, light yellow icing. It is decorated with several blue butterfly cutouts and small white edible pearls. The base of the cake is wrapped with a vibrant blue ribbon tied in a bow.', '&#8377 2000', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-12%20at%2000.41.15_ef2fb348.jpg?text=Colorful+Birthday+Cake', '1.5 kg')">
+                <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-12%20at%2000.41.15_ef2fb348.jpg?text=Pinata+Cake" alt="Pinata cake with butterflies" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Pinata Cake</h3>
+                    1.5kg Cake
+                    <p class="cake-price">&#8377 2000</p>
+                    <p class="cake-description">A spherical cake with a smooth, light yellow icing. It is decorated with several blue butterfly cutouts and small white edible pearls. The base of the cake is wrapped with a vibrant blue ribbon tied in a bow.</p>
+                </div>
+            </div>
+               <div class="cake-card" onclick="openModal('Chocolate Candy Cake', 'A dark chocolate cake with a glossy ganache finish. The top is generously covered with three distinct types of candy: two sections of chocolate bar squares, and a central section filled with colorful round candies. are attached to the front of the cake.','&#8377 1800', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-12%20at%2000.41.15_adae47dd.jpg?text=Colorful+Birthday+Cake', '1 kg')">
+                <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-12%20at%2000.41.15_adae47dd.jpg?text=Candy+Cake" alt="Dark chocolate cake with chocolates on top" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Chocolate Candy Cakee</h3>
+                    1kg cake
+                    <p class="cake-price">&#8377 1800</p>
+                    <p class="cake-description">A dark chocolate cake with a glossy ganache finish. The top is generously covered with three distinct types of candy: two sections of chocolate bar squares, and a central section filled with colorful round candies. are attached to the front of the cake</p>
+                </div>
+            </div>
+               <div class="cake-card" onclick="openModal('Sugar Paper Cake', 'A round, white cake decorated with black icing dots and small white edible pearls, It is adorned with black silhouette cutouts of people in disco poses and a banner that reads ..LETS ROCK', '&#8377 1700', 'https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-12%20at%2000.41.15_be59d4dd.jpg?text=Colorful+Birthday+Cake', '1 kg')">
+                <img src="https://uploads.onecompiler.io/43swjwsf8/43swjzeks/WhatsApp%20Image%202025-08-12%20at%2000.41.15_be59d4dd.jpg?text=Sugar+Stack" alt="Sugar edible paper" class="cake-image">
+                <div class="cake-info">
+                    <h3 class="cake-name">Sugar Paper Cake</h3>
+                    1kg Cake
+                    <p class="cake-price">&#8377 1700</p>
+                    <p class="cake-description">A round, white cake decorated with black icing dots and small white edible pearls. It is adorned with black silhouette cutouts of people in disco poses and a banner that reads "LETS ROCK"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>©  Cakes~Festooy</p>
+        <div class="contact-info">
+            <p>261 E'Ward Ashirwad Bungalow ,Tarabai Park,Kolhapur| +9175965188,8766968370| sweets@delights.com</p>
+        </div>
+    </footer>
+</body>
+</html>
+    </style>
+</head>
+<body>
+   
+    
+    <!-- Additional sections for Wedding, Anniversary, Plain, and Specialty cakes would go here -->
+
+    <!-- Modal -->
+    <div id="cakeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="" alt="Cake Image" style="width: 100%; height: auto; border-radius: 10px;">
+            <h3 id="modalName"></h3>
+            <p id="modalDescription"></p>
+            <p id="modalPrice"></p>
+            <p id="modalWeight"></p>
+        </div>
+    </div>
+
+  
+    <script>
+        function openModal(name, description, price, image, weight) {
+            document.getElementById("modalName").innerText = name;
+            document.getElementById("modalDescription").innerText = description;
+            document.getElementById("modalPrice").innerText = "Price: " + price;
+            document.getElementById("modalWeight").innerText = "Weight: " + weight;
+            document.getElementById("modalImage").src = image;
+            document.getElementById("cakeModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("cakeModal").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("cakeModal")) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
